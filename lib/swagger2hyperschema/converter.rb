@@ -17,7 +17,7 @@ module Swagger2hyperschema
 
       json_schema['links'] = swagger['paths'].flat_map {|endpoint, methods|
         methods.map {|method, link| convert_path_to_link(endpoint, method, link) }
-      }
+      }.select {|link| link['targetSchema'] }
 
       json_schema['definitions'] = swagger['definitions']
 
